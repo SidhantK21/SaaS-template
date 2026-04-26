@@ -2,14 +2,14 @@ import type { FooterColumn, SocialLink } from '@/types'
 
 export const FOOTER_COLUMNS: readonly FooterColumn[] = [
   {
-    id: 'pages',
-    heading: 'Pages',
+    id: 'company',
+    heading: 'Company',
     links: [
       { label: 'Products', href: '#' },
       { label: 'Features', href: '#features' },
-      { label: 'Integrations', href: '#' },
+      { label: 'Careers', href: '#' },
       { label: 'Pricing', href: '#pricing' },
-      { label: 'Blog', href: '#' },
+      { label: 'Contact', href: '#' },
     ],
   },
   {
@@ -18,8 +18,8 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
     links: [
       { label: 'Twitter', href: '#' },
       { label: 'LinkedIn', href: '#' },
-      { label: 'GitHub', href: '#' },
       { label: 'Discord', href: '#' },
+      { label: 'Instagram', href: '#'}
     ],
   },
   {

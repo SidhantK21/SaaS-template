@@ -20,7 +20,7 @@ function ResourcesDropdown() {
       animate={{ opacity: 1, y: 0,  scale: 1    }}
       exit={{    opacity: 0, y: 6,  scale: 0.98 }}
       transition={{ duration: 0.18, ease: 'easeOut' }}
-      className="absolute left-1/2 -translate-x-1/2 top-[calc(100%+8px)] z-50
+      className="absolute left-1/2 -translate-x-1/2 top-[calc(100%+16px)] z-50
                  w-[420px] rounded-2xl border border-gray-200 bg-white shadow-xl p-3
                  flex gap-3"
     >
@@ -91,7 +91,7 @@ export function Navbar() {
   return (
     <div className="sticky top-0 z-50 px-4 pt-3 pb-1">
       <motion.nav
-        className="relative mx-auto max-w-7xl rounded-2xl backdrop-blur-md overflow-hidden"
+        className="relative mx-auto max-w-7xl rounded-2xl backdrop-blur-md"
         style={{ backgroundColor: bg, boxShadow: shadow }}
       >
         {/* Border overlay — fades in on scroll instead of animating borderColor */}
@@ -103,7 +103,7 @@ export function Navbar() {
           {/* Logo */}
           <a href="/" className="flex items-center gap-2.5 shrink-0">
             <LogoMark />
-            <span className="text-[15px] font-semibold tracking-tight text-gray-900">Simplistic</span>
+            <span className="text-[15px] font-semibold tracking-tight text-gray-900">GeekStudios</span>
           </a>
 
           {/* Desktop nav links */}
@@ -139,9 +139,9 @@ export function Navbar() {
                   </AnimatePresence>
                 </div>
               ) : (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.href}
                   onPointerEnter={(e: PointerEvent<HTMLAnchorElement>) => { if (e.pointerType === 'mouse') setHovered(idx) }}
                   onPointerLeave={(e: PointerEvent<HTMLAnchorElement>) => { if (e.pointerType === 'mouse') setHovered(null) }}
                   className="relative flex items-center gap-1 px-3 py-1.5 text-[13.5px] text-gray-600 hover:text-gray-900 transition-colors"
@@ -154,18 +154,15 @@ export function Navbar() {
                     />
                   )}
                   <span className="relative z-10">{link.label}</span>
-                </a>
+                </Link>
               )
             ))}
           </div>
 
           {/* Desktop actions */}
-          <div className="hidden md:flex items-center gap-5">
-            <Link to="/login" className="text-[13.5px] text-gray-600 hover:text-gray-900 transition-colors">
-              Login
-            </Link>
+          <div className="hidden md:flex items-center gap-5 rounded-lg border border-blue-500">
             <Button variant="primary" size="sm" asLink href="#">
-              Try for free
+              Pre-built Templates
             </Button>
           </div>
 

@@ -1,4 +1,5 @@
-import { motion } from 'motion/react'
+import { useRef } from 'react'
+import { motion, useInView } from 'motion/react'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { Button } from '@/components/ui/Button'
 import { ArrowRight } from '@/components/ui/Icons'
@@ -6,164 +7,204 @@ import { FADE_UP, STAGGER } from '@/constants/motion.constants'
 
 const TILE_CONTENT = [
   {
-    id: 'pricing',
-    bgClass: 'bg-slate-50',
-    content: (
-      <div className="space-y-1.5 p-3 rounded-xl">
-        <div className="text-[8px] font-semibold text-gray-700 mb-2">Simple, Transparent Pricing</div>
-        {[['Basic', 'Pro', 'Business'], ['$9', '$29', '$99']].map((row, ri) => (
-          <div key={ri} className="grid grid-cols-3 gap-1">
-            {row.map((cell, ci) => (
-              <div key={ci} className={`h-5 rounded text-[7px] flex items-center justify-center ${ri === 1 && ci === 1 ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-500'}`}>
-                {cell}
-              </div>
-            ))}
-          </div>
-        ))}
-        {['AI Agent', 'Email Support', 'Priority Support', 'Analytics'].map(f => (
-          <div key={f} className="flex items-center gap-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
-            <div className="text-[6px] text-gray-500">{f}</div>
-          </div>
-        ))}
-      </div>
-    ),
-  },
-  {
-    id: 'features',
-    bgClass: 'bg-blue-50',
+    id: 'campaign',
+    bgClass: 'bg-white',
     content: (
       <div className="p-3 space-y-2">
-        <div className="text-[8px] font-semibold text-gray-700">Build faster with AI</div>
+        <div className="flex items-center justify-between mb-1">
+          <div className="text-[8px] font-semibold text-gray-700">Campaign Performance</div>
+          <div className="text-[7px] text-emerald-600 font-medium bg-emerald-50 px-1.5 py-0.5 rounded">↑ Live</div>
+        </div>
         <div className="grid grid-cols-3 gap-1.5">
-          {['AI Code Generation', 'Smart Refactoring', 'Instant Deployment'].map(t => (
-            <div key={t} className="bg-gray-50 border border-gray-100 rounded-lg p-1.5">
-              <div className="w-5 h-5 rounded bg-blue-100 mb-1.5" />
-              <div className="text-[6px] text-gray-500 leading-tight">{t}</div>
+          {[['4.2×', 'ROAS'], ['3.8%', 'CTR'], ['₹2.1L', 'Revenue']].map(([val, label]) => (
+            <div key={label} className="bg-gray-50 border border-gray-100 rounded-lg p-2">
+              <div className="text-[12px] font-semibold text-gray-900">{val}</div>
+              <div className="text-[7px] text-gray-400 mt-0.5">{label}</div>
             </div>
           ))}
         </div>
+        <div className="flex items-end gap-1 h-8 pt-1">
+          {[30, 42, 38, 55, 60, 72, 80, 85, 90, 95].map((h, i) => (
+            <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, backgroundColor: i >= 6 ? '#3b82f6' : '#e2e8f0' }} />
+          ))}
+        </div>
+        <div className="text-[7px] text-gray-400">Google Ads · Meta · Oct 2024</div>
       </div>
     ),
   },
   {
     id: 'testimonial',
-    bgClass: 'bg-linear-to-br from-purple-500 to-pink-500',
+    bgClass: 'bg-linear-to-br from-blue-600 to-blue-800',
     content: (
       <div className="p-3 text-white">
         <div className="text-[8px] mb-3 leading-relaxed opacity-90">
-          "The AI-powered insights have helped us move 40% more tasks. It's like having a superpower for sales."
+          "Our lead volume tripled within 60 days of the new site going live. Best investment we've made in years."
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-5 h-5 rounded-full bg-white/30" />
+          <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[6px] font-bold">RM</div>
           <div>
-            <div className="text-[7px] font-medium">Marcus Johnson</div>
-            <div className="text-[6px] opacity-75">VP of Sales, Nexus</div>
+            <div className="text-[7px] font-medium">Rohan Mehta</div>
+            <div className="text-[6px] opacity-70">CEO, Nexus Infra</div>
           </div>
         </div>
       </div>
     ),
   },
   {
-    id: 'messages',
-    bgClass: 'bg-violet-50',
+    id: 'seo',
+    bgClass: 'bg-white',
     content: (
       <div className="p-3 space-y-2">
+        <div className="text-[8px] font-semibold text-gray-700 mb-1">SEO Growth</div>
+        <div className="space-y-1.5">
+          {[
+            { kw: 'digital marketing agency', pos: '#3', delta: '↑11' },
+            { kw: 'web design mumbai', pos: '#1', delta: '↑18' },
+            { kw: 'custom software dev', pos: '#4', delta: '↑7' },
+          ].map(({ kw, pos, delta }) => (
+            <div key={kw} className="flex items-center justify-between">
+              <span className="text-[8px] text-gray-500 truncate max-w-[100px]">{kw}</span>
+              <div className="flex items-center gap-1.5 shrink-0">
+                <span className="text-[8px] font-semibold text-gray-800">{pos}</span>
+                <span className="text-[7px] text-emerald-600 font-medium">{delta}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="text-[7px] text-gray-400 pt-1">Organic search · Last 90 days</div>
+      </div>
+    ),
+  },
+  {
+    id: 'project',
+    bgClass: 'bg-slate-900',
+    content: (
+      <div className="p-3 text-white space-y-2">
+        <div className="text-[8px] font-semibold mb-2">Sprint 4 — Website Rebuild</div>
         {[
-          { txt: 'Hey! Are you free for a quick call?', left: true,  av: 'TM', color: 'bg-blue-500' },
-          { txt: 'Sure, give me 5 minutes!',            left: false, av: 'JD', color: 'bg-violet-400' },
-          { txt: 'Sounds good 👍',                      left: true,  av: 'TM', color: 'bg-blue-500' },
-          { txt: "I'm not sure if I can make it.",      left: false, av: 'AL', color: 'bg-rose-400' },
-        ].map((m, i) => (
-          <div key={i} className={`flex items-end gap-1.5 ${m.left ? '' : 'flex-row-reverse'}`}>
-            <div className={`w-5 h-5 rounded-full shrink-0 flex items-center justify-center text-white text-[6px] font-bold ${m.color}`}>
-              {m.av}
+          { task: 'Homepage design', done: true },
+          { task: 'CMS integration', done: true },
+          { task: 'SEO meta setup', done: true },
+          { task: 'Performance audit', done: false },
+        ].map(({ task, done }) => (
+          <div key={task} className="flex items-center gap-1.5">
+            <div className={`w-3 h-3 rounded-sm border flex items-center justify-center shrink-0 ${done ? 'bg-blue-500 border-blue-500' : 'border-white/30'}`}>
+              {done && (
+                <svg width="7" height="7" viewBox="0 0 7 7" fill="none">
+                  <path d="M1 3.5L2.8 5.2L6 1.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
             </div>
-            <div className={`max-w-[75%] rounded-2xl px-2 py-1.5 text-[7px] leading-relaxed ${m.left ? 'bg-gray-100 text-gray-700' : 'bg-blue-500 text-white'}`}>
-              {m.txt}
-            </div>
+            <span className={`text-[8px] ${done ? 'text-white/50 line-through' : 'text-white/80'}`}>{task}</span>
           </div>
         ))}
       </div>
     ),
   },
   {
-    id: 'world',
-    bgClass: 'bg-emerald-50',
+    id: 'chat',
+    bgClass: 'bg-gray-50',
     content: (
-      <div className="p-3">
-        <div className="text-[8px] font-semibold text-gray-700 mb-0.5">All over the world</div>
-        <div className="text-[6px] text-gray-500 mb-3">Meet our distributed team working across 6 continents.</div>
-        <div className="flex items-end justify-center">
-          <div className="w-20 h-10 rounded-t-full border-2 border-gray-200 bg-gray-50" />
-        </div>
+      <div className="p-3 space-y-2">
+        <div className="text-[8px] font-semibold text-gray-700 mb-1">Project Chat</div>
+        {[
+          { txt: 'Homepage is live! 🎉', left: true, av: 'PS', color: 'bg-blue-500' },
+          { txt: 'Looks amazing, thank you!', left: false, av: 'RK', color: 'bg-gray-400' },
+          { txt: 'Ads campaign is live too', left: true, av: 'PS', color: 'bg-blue-500' },
+          { txt: 'Already seeing traffic 📈', left: false, av: 'RK', color: 'bg-gray-400' },
+        ].map((m, i) => (
+          <div key={i} className={`flex items-end gap-1.5 ${m.left ? '' : 'flex-row-reverse'}`}>
+            <div className={`w-4 h-4 rounded-full shrink-0 flex items-center justify-center text-white text-[5px] font-bold ${m.color}`}>{m.av}</div>
+            <div className={`max-w-[78%] rounded-2xl px-2 py-1.5 text-[7px] leading-relaxed ${m.left ? 'bg-white border border-gray-100 text-gray-700' : 'bg-blue-500 text-white'}`}>{m.txt}</div>
+          </div>
+        ))}
       </div>
     ),
   },
   {
-    id: 'analytics',
-    bgClass: 'bg-amber-50',
+    id: 'results',
+    bgClass: 'bg-white',
     content: (
-      <div className="p-3 space-y-1.5">
-        <div className="text-[8px] font-semibold text-gray-700 mb-2">Live Analytics</div>
-        <div className="flex items-end gap-1 h-10">
-          {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
-            <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, backgroundColor: i === 5 ? '#3b82f6' : '#e2e8f0' }} />
-          ))}
-        </div>
-        <div className="flex justify-between mt-1">
-          <div className="text-[6px] text-gray-400">Mon</div>
-          <div className="text-[6px] text-gray-400">Sun</div>
-        </div>
+      <div className="p-3 space-y-2">
+        <div className="text-[8px] font-semibold text-gray-700">Client Results</div>
+        <div className="text-[6px] text-gray-400 mb-2">Avg. across active accounts</div>
+        {[
+          { label: 'Conversion rate', before: '1.2%', after: '4.7%' },
+          { label: 'Cost per lead', before: '₹680', after: '₹210' },
+          { label: 'Organic traffic', before: '800', after: '3.4K' },
+        ].map(({ label, before, after }) => (
+          <div key={label} className="space-y-0.5">
+            <div className="text-[7px] text-gray-500">{label}</div>
+            <div className="flex items-center gap-2">
+              <span className="text-[7px] text-gray-400 line-through">{before}</span>
+              <span className="text-[8px] font-semibold text-gray-900">{after}</span>
+              <span className="text-[6px] text-emerald-600 font-medium">↑</span>
+            </div>
+          </div>
+        ))}
       </div>
     ),
   },
 ]
 
-function ScrollColumn({ tiles, direction }: { tiles: typeof TILE_CONTENT; direction: 'up' | 'down' }) {
+const SPIN_DISTANCE = 140
+
+function ScrollColumn({
+  tiles,
+  scrollUp,
+  inView,
+}: {
+  tiles: typeof TILE_CONTENT
+  scrollUp: boolean
+  inView: boolean
+}) {
   const doubled = [...tiles, ...tiles]
+  const origin = scrollUp ? 0 : -SPIN_DISTANCE
+  const target = scrollUp ? -SPIN_DISTANCE : 0
 
   return (
     <div className="overflow-hidden flex-1">
-      <div
+      <motion.div
         className="flex flex-col gap-3"
-        style={{ animation: `${direction === 'down' ? 'cta-scroll-up' : 'cta-scroll-down'} 18s linear infinite` }}
+        initial={{ y: origin }}
+        animate={inView ? { y: target } : { y: origin }}
+        transition={
+          inView
+            ? { type: 'spring', duration: 2.2, bounce: 0.2 }
+            : { duration: 0 }
+        }
       >
         {doubled.map((tile, i) => (
           <div
             key={`${tile.id}-${i}`}
-            className={['rounded-2xl border border-gray-100 overflow-hidden shrink-0 shadow-[0_2px_12px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)]  ', tile.bgClass].join(' ')}
+            className={[
+              'rounded-2xl border border-gray-100 overflow-hidden shrink-0',
+              'shadow-[0_2px_12px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.03)]',
+              tile.bgClass,
+            ].join(' ')}
           >
             {tile.content}
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }
 
 function ScreenshotMosaic() {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: false, amount: 0.3 })
+
   const col1 = TILE_CONTENT.slice(0, 3)
   const col2 = TILE_CONTENT.slice(3)
 
   return (
-    <div className="relative h-[480px] overflow-hidden flex gap-3">
-      <style>{`
-        @keyframes cta-scroll-up {
-          0%   { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
-        }
-        @keyframes cta-scroll-down {
-          0%   { transform: translateY(-50%); }
-          100% { transform: translateY(0); }
-        }
-      `}</style>
-      <ScrollColumn tiles={col1} direction="up" />
-      <ScrollColumn tiles={col2} direction="down" />
-
-      {/* Top fade */}
+    <div ref={ref} className="relative h-[480px] overflow-hidden flex gap-3">
+      {/* col1 scrolls UP — starts below, rises into place */}
+      <ScrollColumn tiles={col1} scrollUp={true}  inView={inView} />
+      {/* col2 scrolls DOWN — starts above, falls into place */}
+      <ScrollColumn tiles={col2} scrollUp={false} inView={inView} />
       <div className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-white to-transparent pointer-events-none z-10" />
-      {/* Bottom fade */}
       <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-white to-transparent pointer-events-none z-10" />
     </div>
   )
@@ -182,14 +223,15 @@ export function CTA() {
         {/* Left copy */}
         <motion.div variants={FADE_UP}>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-900 tracking-tight leading-[1.1] mb-6">
-            Start building autonomous workflows today.
+            Turn your digital presence into a growth engine.
           </h2>
           <p className="text-base text-gray-500 leading-relaxed mb-8">
-            Build, deploy, and orchestrate intelligent AI agents that automate complex workflows,
-            make decisions, and execute tasks autonomously.
+            We partner with ambitious brands to build high-converting websites,
+            run revenue-first ad campaigns, and ship custom software — all under
+            one roof, with zero hand-offs.
           </p>
           <Button variant="primary" size="lg" asLink href="#">
-            Get Started
+            Start a project
             <ArrowRight size={16} />
           </Button>
         </motion.div>

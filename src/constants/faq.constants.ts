@@ -2,59 +2,61 @@ import type { FAQItem } from '@/types'
 
 export const FAQ_ITEMS: readonly FAQItem[] = [
   {
-    id: 'cost',
+    id: 'gen-1',
+    category: 'General',
+    question: 'What exactly does your agency do?',
+    answer:
+      'We are a software engineering and digital marketing agency based in Kanpur, India. ' +
+      'We build websites, web apps, and mobile apps — and we grow them through SEO, Google Ads, ' +
+      'and Meta Ads. Most agencies do one or the other. We do both, so you only need one partner.',
+  },
+  {
+    id: 'price-2',
     category: 'Pricing',
-    question: 'How much does it cost to deploy AI agents?',
+    question: 'What are your payment terms?',
     answer:
-      'We offer three plans starting at $19/month. Each plan includes a different number of AI agents and task executions. You can view full pricing details above.',
+      'We take 50% upfront before work begins and the remaining 50% on delivery. ' +
+      'For monthly retainers, we invoice on the 1st of each month. ' +
+      'We accept bank transfer, UPI, Razorpay, and international wire.',
   },
   {
-    id: 'trial',
+    id: 'price-3',
     category: 'Pricing',
-    question: 'Is there a free trial available?',
+    question: 'Is the initial discovery call free?',
     answer:
-      'Yes, all plans come with a 14-day free trial. No credit card required. You can explore all features before committing to a plan.',
+      'Yes — a 15-minute discovery call is completely free. We use it to understand ' +
+      'your goals and tell you honestly whether we are the right fit.',
   },
   {
-    id: 'limits',
-    category: 'Pricing',
-    question: 'What happens if I exceed my plan limits?',
+    id: 'proc-4',
+    category: 'Process',
+    question: 'Will I own everything at the end — code, accounts, files?',
     answer:
-      'We will notify you when you approach your plan limits. You can upgrade your plan at any time or purchase additional task executions as needed.',
+      'Yes, 100%. All source code, design files, ad accounts, and analytics are in your ' +
+      'name and stay with you. If you ever leave, you walk away with everything.',
   },
   {
-    id: 'change',
-    category: 'Pricing',
-    question: 'Can I change plans at any time?',
+    id: 'mkt-1',
+    category: 'Marketing',
+    question: 'How long before I see SEO results?',
     answer:
-      'Absolutely. You can upgrade or downgrade your plan at any time. Changes take effect immediately and are prorated for the current billing period.',
+      'You will typically see measurable movement in keyword rankings within 60–90 days, ' +
+      'and meaningful traffic growth within 4–6 months. Anyone promising results in 2 weeks is misleading you.',
   },
   {
-    id: 'refund',
-    category: 'Pricing',
-    question: 'Do you offer refunds?',
+    id: 'dev-1',
+    category: 'Development',
+    question: 'How long does a typical project take?',
     answer:
-      'Yes, we offer a 30-day money-back guarantee on all plans. If you are not satisfied, contact our support team for a full refund.',
+      'A basic website is delivered in 7–10 working days. A custom business website takes 14–21 days. ' +
+      'An e-commerce store takes 21–30 days. Timelines start after design is approved and payment is received.',
   },
   {
-    id: 'automate',
-    category: 'Agents',
-    question: 'What can AI agents automate?',
+    id: 'dev-6',
+    category: 'Development',
+    question: 'What happens after launch?',
     answer:
-      'AI agents can automate a wide range of tasks including data processing, API orchestration, customer support workflows, code review, report generation, and more.',
-  },
-  {
-    id: 'setup',
-    category: 'Agents',
-    question: 'How long does it take to deploy an agent?',
-    answer:
-      'Most agents can be configured and deployed in minutes using our visual workflow builder. Complex enterprise workflows may take a few hours to set up.',
-  },
-  {
-    id: 'security-agents',
-    category: 'Agents',
-    question: 'Are my agent workflows secure?',
-    answer:
-      'All workflows run in isolated, encrypted environments. We are SOC 2 Type II certified and GDPR compliant. Your data never leaves your chosen region.',
+      'All projects include a post-launch support period — 1 month for websites, 3 months for custom software. ' +
+      'We fix any bugs at no extra charge during that window.',
   },
 ]

@@ -1,19 +1,21 @@
-export type BillingCycle = 'monthly' | 'annual'
+export type BillingCycle = 'websites' | 'apps'
 
 export interface PricingFeature {
   readonly label: string
+  readonly included: boolean
 }
 
 export interface PricingTier {
   readonly id: string
   readonly name: string
-  readonly monthlyPrice: number
-  readonly annualPrice: number
-  readonly description: string
-  readonly features: readonly PricingFeature[]
-  /** Second group shown below the divider (Pro card only) */
-  readonly extraFeatures?: readonly PricingFeature[]
+  readonly tagline: string
+  readonly price: number | 'custom'
+  readonly currency?: string
+  readonly period: 'one-time' | 'project' | 'month'
+  readonly delivers?: string
   readonly ctaLabel: string
   readonly isRecommended?: boolean
   readonly badge?: string
+  readonly features: readonly PricingFeature[]
+  readonly extraFeatures?: readonly PricingFeature[]
 }
