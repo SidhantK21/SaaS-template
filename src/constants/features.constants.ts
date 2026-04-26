@@ -47,24 +47,24 @@ export const BENTO_FEATURES: readonly BentoFeature[] = [
 
 export const MINI_FEATURES = [
   {
-    id: 'deploy',
+    id: 'dev',
     iconVariant: 'lightning' as const,
-    title: 'Lightning-fast deployments',
+    title: 'Web & App Development',
     description:
-      'Push to production in seconds. Our CI/CD pipeline handles builds, tests, and rollbacks automatically.',
+      'From a five-page business site to a full-stack mobile app — we build fast, scalable, and handover everything to you.',
   },
   {
-    id: 'analytics',
+    id: 'marketing',
     iconVariant: 'chart' as const,
-    title: 'Built-in analytics',
+    title: 'Digital Marketing',
     description:
-      'Track user behavior, monitor performance, and gain actionable insights without third-party tools.',
+      'SEO, Google Ads, and Meta Ads managed for leads and revenue — not impressions. Every rupee of ad spend is yours, with zero markup.',
   },
   {
-    id: 'integrations',
+    id: 'partner',
     iconVariant: 'puzzle' as const,
-    title: 'Seamless integrations',
+    title: 'One Partner, Full Stack',
     description:
-      'Connect with your existing stack. Slack, GitHub, Jira, and 100+ integrations out of the box.',
+      'Design, development, and marketing under one roof. No hand-offs, no gaps, no agency blame-game.',
   },
 ]

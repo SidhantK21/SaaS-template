@@ -225,12 +225,15 @@ function SecurityMockup() {
 function CollabMockup() {
   const messages = [
     {
-      text: "Workflow completed. 847 tasks processed.",
+      text: "We're live! Can we get a small tweak on the homepage?",
       side: "left",
-      avatar: "TM",
+      avatar: "SK",
     },
-    { text: "Deploy to production", side: "right", avatar: "JD" },
-    { text: "Deployed. All systems operational.", side: "left", avatar: "AL" },
+    { text: "On it — will push in 30 mins", side: "right", avatar: "GS" },
+    { text: "Update deployed. Looking great!", side: "left", avatar: "GS" },
+    { text: "Also the contact form isn't sending emails", side: "left", avatar: "SK" },
+    { text: "Fixed — SMTP config was off. Test it now", side: "right", avatar: "GS" },
+    { text: "Works perfectly, thank you! 🙌", side: "left", avatar: "SK" },
   ];
 
   return (
@@ -484,8 +487,8 @@ export function Features() {
           variant="security"
         />
         <BentoCard
-          title="Real-time collaboration"
-          description="Connect with your team instantly. AI-powered insights help you work smarter together."
+          title="Support after launch"
+          description="We don't disappear after go-live. Get direct access to our team for updates, fixes, and improvements."
           colSpan={1}
           rowSpan={1}
           variant="collab"

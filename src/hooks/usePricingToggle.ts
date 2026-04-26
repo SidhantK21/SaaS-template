@@ -3,22 +3,22 @@ import type { BillingCycle, PricingTier } from '@/types'
 
 interface UsePricingToggleReturn {
   cycle: BillingCycle
-  isAnnual: boolean
+  isAnnual: boolean   // true = apps tab
   toggle: () => void
-  getDisplayPrice: (tier: PricingTier) => number
+  getDisplayPrice: (tier: PricingTier) => string
 }
 
 export function usePricingToggle(): UsePricingToggleReturn {
-  const [cycle, setCycle] = useState<BillingCycle>('monthly')
+  const [cycle, setCycle] = useState<BillingCycle>('websites')
 
   const toggle = useCallback(() => {
-    setCycle(prev => (prev === 'monthly' ? 'annual' : 'monthly'))
+    setCycle(prev => (prev === 'websites' ? 'apps' : 'websites'))
   }, [])
 
-  const getDisplayPrice = useCallback(
-    (tier: PricingTier) => (cycle === 'annual' ? tier.annualPrice : tier.monthlyPrice),
-    [cycle],
-  )
+  const getDisplayPrice = useCallback((tier: PricingTier): string => {
+    if (tier.price === 'custom') return 'Custom'
+    return `$${tier.price.toLocaleString('en-US')}`
+  }, [])
 
-  return { cycle, isAnnual: cycle === 'annual', toggle, getDisplayPrice }
+  return { cycle, isAnnual: cycle === 'apps', toggle, getDisplayPrice }
 }
