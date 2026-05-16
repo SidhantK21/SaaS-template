@@ -5,18 +5,18 @@ import { FADE_UP, STAGGER, FADE_IN } from '@/constants/motion.constants'
 const LOGO_DEV_TOKEN = 'pk_JP50tcEERzagas9Bkl48xA'
 
 const LOGOS: readonly { name: string; domain: string }[] = [
-  { name: 'OpenAI',      domain: 'openai.com'       },
-  { name: 'Vercel',      domain: 'vercel.com'        },
-  { name: 'Stripe',      domain: 'stripe.com'        },
-  { name: 'Linear',      domain: 'linear.app'        },
-  { name: 'Notion',      domain: 'notion.so'         },
-  { name: 'Figma',       domain: 'figma.com'         },
-  { name: 'Raycast',     domain: 'raycast.com'       },
-  { name: 'Supabase',    domain: 'supabase.com'      },
-  { name: 'GitHub',      domain: 'github.com'        },
-  { name: 'Anthropic',   domain: 'anthropic.com'     },
-  { name: 'Loom',        domain: 'loom.com'          },
-  { name: 'Retool',      domain: 'retool.com'        },
+  { name: 'Razorpay',        domain: 'razorpay.com'       },
+  { name: 'Swiggy',          domain: 'swiggy.com'          },
+  { name: 'Nykaa',           domain: 'nykaa.com'           },
+  { name: 'Meesho',          domain: 'meesho.com'          },
+  { name: 'Urban Company',   domain: 'urbancompany.com'    },
+  { name: 'Groww',           domain: 'groww.in'            },
+  { name: 'Zomato',          domain: 'zomato.com'          },
+  { name: 'Practo',          domain: 'practo.com'          },
+  { name: 'Unacademy',       domain: 'unacademy.com'       },
+  { name: 'CRED',            domain: 'cred.club'           },
+  { name: 'Zerodha',         domain: 'zerodha.com'         },
+  { name: 'Ola',             domain: 'olacabs.com'         },
 ]
 
 export function TrustedBy() {
@@ -30,8 +30,8 @@ export function TrustedBy() {
           viewport={{ once: true, amount: 0.3 }}
           variants={FADE_UP}
         >
-          <p className="text-[20px] font-normal text-gray-900 tracking-tight mb-1">Trusted by teams building the future of AI.</p>
-          <p className="text-[21px] font-normal tracking-tight leading-4 text-gray-400">From prototype to production, autonomously.</p>
+          <p className="text-[20px] font-normal text-gray-900 tracking-tight mb-1">Trusted by ambitious brands across world.</p>
+          <p className="text-[21px] font-normal tracking-tight leading-4 text-gray-400">From early-stage startups to market leaders.</p>
         </motion.div>
 
         <motion.div

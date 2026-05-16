@@ -6,11 +6,11 @@ import { Button } from '@/components/ui/Button'
 import { NAV_LINKS } from '@/constants/nav.constants'
 
 const RESOURCES_LINKS = [
-  { label: 'Blog',          href: '#' },
-  { label: 'Documentation', href: '#' },
-  { label: 'Help Center',   href: '#' },
-  { label: 'Changelog',     href: '#' },
-  { label: 'Tutorials',     href: '#' },
+  { label: 'Case Studies',    href: '#' },  
+  { label: 'Blog',            href: '#' },
+  { label: 'Portfolio',       href: '#' },
+  { label: 'Marketing Guides', href: '#' },
+  { label: 'Free Tools',      href: '#' },
 ]
 
 function ResourcesDropdown() {
@@ -38,29 +38,32 @@ function ResourcesDropdown() {
         ))}
       </div>
 
-      {/* Right: featured card */}
+      {/* Right: featured case study card */}
       <div className="flex-1 flex flex-col rounded-xl border border-gray-100 bg-gray-50 p-3 min-w-0">
-        <p className="text-[12px] text-gray-500 leading-snug mb-2">
-          Multi-agent orchestration is now available.
+        <div className="text-[10px] font-semibold text-blue-500 uppercase tracking-wide mb-1">Featured Case Study</div>
+        <p className="text-[12px] font-medium text-gray-800 leading-snug mb-2">
+          How we helped a D2C brand achieve 4× ROAS in 60 days.
         </p>
 
-        {/* Changelog preview mockup */}
+        {/* Metrics preview */}
         <div className="flex-1 rounded-lg border border-gray-200 bg-white p-2 mb-3 overflow-hidden">
-          <div className="flex flex-col gap-1.5">
-            <div className="h-1.5 w-8 bg-gray-900 rounded-full self-center" />
-            <div className="grid grid-cols-2 gap-1.5 mt-1">
-              {[0,1,2,3].map(i => (
-                <div key={i} className="rounded border border-gray-100 bg-gray-50 h-10 flex flex-col gap-1 p-1.5">
-                  <div className="h-1 w-full bg-gray-200 rounded-full" />
-                  <div className="h-1 w-3/4 bg-gray-200 rounded-full" />
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-3 gap-1.5">
+            {[['4×', 'ROAS'], ['↓69%', 'Cost/Lead'], ['↑320%', 'Traffic']].map(([val, label]) => (
+              <div key={label} className="rounded bg-gray-50 border border-gray-100 p-1.5 flex flex-col items-center">
+                <span className="text-[11px] font-semibold text-gray-900">{val}</span>
+                <span className="text-[8px] text-gray-400 mt-0.5 text-center">{label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-end gap-0.5 h-6 mt-2 px-0.5">
+            {[25, 35, 30, 50, 58, 65, 80, 88, 95, 100].map((h, i) => (
+              <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, backgroundColor: i >= 5 ? '#3b82f6' : '#e2e8f0' }} />
+            ))}
           </div>
         </div>
 
         <a href="#" className="text-[12px] font-medium text-blue-500 hover:text-blue-600 transition-colors">
-          See changelog →
+          Read case study →
         </a>
       </div>
     </motion.div>
